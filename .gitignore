@@ -1,0 +1,9 @@
+.buildpath
+.project
+.python3-sandbox/
+.externalToolBuilders/
+.project
+.pydevproject
+.dynamicMachine
+.pertinoApiAcceptanceConfig
+.settings/
