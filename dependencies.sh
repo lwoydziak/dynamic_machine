@@ -1,7 +1,7 @@
 /bin/rm -f .pipPackageList
 pip3 freeze > .pipPackageList
 
-for P in pytest coverage radon mockito-without-hardcoded-distribute-version apache-libcloud paramiko pycrypto ecdsa pexpect jsonconfigfile
+for P in pytest coverage radon mockito-without-hardcoded-distribute-version apache-libcloud paramiko pycrypto ecdsa pexpect jsonconfigfile pertinosdk
 do
         /usr/bin/python2 find_package.py --package $P .pipPackageList
         case $? in

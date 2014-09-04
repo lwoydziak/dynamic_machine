@@ -8,16 +8,38 @@ from jsonconfigfile import Env
 from providers import digitalOceanHosting
 from dynamic_machine.machine import Machine
 from dynamic_machine.inventory import Inventory
+from pertinosdk import PertinoSdk, where
+
+class NullPertino():
+    def listOrgs(self):
+        return ["none"]
+
+    def listDevicesIn(self, _, _):
+        return ""
+    
+    def deleteFrom(self, _, _):
+        pass
 
 def destroyNodes(filter):
     onDigitalOcean = digitalOceanHosting()
     name = Env().get("BaseHostName")
     machines = []
     
+    try:
+        username = Env().get("Pertino","username")
+        password = Env().get("Pertino","password")
+        pertinoSdk = PertinoSdk(username, password)
+    except:
+        pertinoSdk = NullPertino()
+        
+    organization = pertinoSdk.listOrgs()[0]
+    
     # split
     for item in Inventory(onDigitalOcean).list(filteredByHost=name):
         if filter and not filter in item.name:
-            continue 
+            continue
+        machine = pertinoSdk.listDevicesIn(organization, where("hostName").contains(name))
+        pertinoSdk.deleteFrom(organization, machine)
         machine = Machine(onDigitalOcean, existing=True).name(item.name)
         machine.destroy()
         machines.append(machine)
@@ -34,6 +56,10 @@ def DestroyMachines(filter):
             "location"      : "None", \
             "image"         : "None", \
             "size"          : "None" \
+        },\
+        "Pertino" : { \
+            "username"      : "None", \
+            "password"      : "None"  \
         },\
         "BaseHostName": "None"\
     }'
