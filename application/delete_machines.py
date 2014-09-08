@@ -20,7 +20,7 @@ class NullPertino():
     def deleteFrom(self, *args):
         pass
 
-def destroyNodes(filter):
+def destroyNodes(aFilter):
     onDigitalOcean = digitalOceanHosting()
     name = Env().get("BaseHostName")
     machines = []
@@ -36,9 +36,9 @@ def destroyNodes(filter):
     
     # split
     for item in Inventory(onDigitalOcean).list(filteredByHost=name):
-        if filter and not filter in item.name:
+        if aFilter and not aFilter in item.name:
             continue
-	pertinoHost = filter if filter else name
+        pertinoHost = aFilter if aFilter else name
         machine = pertinoSdk.listDevicesIn(organization, where("hostName").contains(pertinoHost))
         pertinoSdk.deleteFrom(organization, machine)
         machine = Machine(onDigitalOcean, existing=True).name(item.name)
