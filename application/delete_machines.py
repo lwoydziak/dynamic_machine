@@ -38,7 +38,8 @@ def destroyNodes(filter):
     for item in Inventory(onDigitalOcean).list(filteredByHost=name):
         if filter and not filter in item.name:
             continue
-        machine = pertinoSdk.listDevicesIn(organization, where("hostName").contains(name))
+	pertinoHost = filter if filter else name
+        machine = pertinoSdk.listDevicesIn(organization, where("hostName").contains(pertinoHost))
         pertinoSdk.deleteFrom(organization, machine)
         machine = Machine(onDigitalOcean, existing=True).name(item.name)
         machine.destroy()
