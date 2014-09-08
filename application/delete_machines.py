@@ -14,10 +14,10 @@ class NullPertino():
     def listOrgs(self):
         return ["none"]
 
-    def listDevicesIn(self, _, _):
+    def listDevicesIn(self, *args):
         return ""
     
-    def deleteFrom(self, _, _):
+    def deleteFrom(self, *args):
         pass
 
 def destroyNodes(filter):
