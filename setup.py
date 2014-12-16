@@ -19,11 +19,11 @@ if os.path.exists('README.md'):
 scripts = glob.glob("application/*")
 
 setup(name='DynamicMachine',
-      version='0.2.6',
+      version='0.3.1',
       maintainer='Luke Woydziak',
       maintainer_email='lwoydziak@gmail.com',
       url = 'https://github.com/Pipe-s/dynamic_machine',
-      download_url = 'https://github.com/Pipe-s/dynamic_machine/tarball/0.2.6',
+      download_url = 'https://github.com/Pipe-s/dynamic_machine/tarball/0.3.1',
       platforms = ["any"],
       description = 'Python package for running the Dynamic Machine application.',
       long_description = read('README.txt'),
@@ -43,7 +43,7 @@ setup(name='DynamicMachine',
                         "apache-libcloud",
                         "pexpect",
                         "jsonconfigfile",
-			"pertinosdk"
+			            "pertinosdk"
                        ],
       scripts=scripts
       )

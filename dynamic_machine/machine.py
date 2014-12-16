@@ -43,7 +43,7 @@ class Machine(object):
     
     def image(self, desiredImage): 
         images = self.__onProvider.list_images()
-        image = [anImage for anImage in images if desiredImage in anImage.name][0]
+        image = [anImage for anImage in images if anImage.name.startswith(desiredImage)][0]
         self.__image = image
         return self
     

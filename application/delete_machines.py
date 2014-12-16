@@ -29,7 +29,8 @@ def destroyNodes(aFilter):
         username = Env().get("Pertino","username")
         password = Env().get("Pertino","password")
         pertinoSdk = PertinoSdk(username, password)
-    except:
+    except Exception as e:
+        print(str(e))
         pertinoSdk = NullPertino()
         
     organization = pertinoSdk.listOrgs()[0]

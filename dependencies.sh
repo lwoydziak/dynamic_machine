@@ -7,12 +7,12 @@ do
         case $? in
         1)
                 echo "Python package $P not found, installing..."
-        	y="pip3 install $P"
+        	y="sudo pip3 install $P"
         	$y
                 ;;
         2)
                 echo "Python package $P needs upgrade, upgrading..."
-        	y="pip3 install --upgrade $P"
+        	y="sudo pip3 install --upgrade $P"
         	$y
                 ;;
         esac
