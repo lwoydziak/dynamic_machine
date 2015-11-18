@@ -26,14 +26,14 @@ class Machine(object):
         with open(sshKeyFilename) as sshKeyFile:
             sshKey = sshKeyFile.read()
         keyName = (sshKey[sshKey.rfind(" ")+1:]).lstrip().rstrip()
-        availableKeys = onProvider.ex_list_ssh_keys()
+        availableKeys = onProvider.list_key_pairs()
         while True:
             try:
-                self.__sshKey = str([aKey for aKey in availableKeys if keyName in aKey.name][0].id)
+                self.__sshKey = str([aKey for aKey in availableKeys if keyName in aKey.name][0].fingerprint)
                 return self
             except IndexError:
-                onProvider.ex_create_ssh_key(keyName, sshKey)
-                availableKeys = onProvider.ex_list_ssh_keys()
+                onProvider.import_key_pair_from_string((keyName, sshKey)
+                availableKeys = onProvider.list_key_pairs()
                 
     def size(self, desiredSize):
         sizes = self.__onProvider.list_sizes()
