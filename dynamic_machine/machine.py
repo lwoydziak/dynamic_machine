@@ -34,7 +34,7 @@ class Machine(object):
             except IndexError:
                 onProvider.import_key_pair_from_string((keyName, sshKey)
                 availableKeys = onProvider.list_key_pairs()
-                
+
     def size(self, desiredSize):
         sizes = self.__onProvider.list_sizes()
         size = [aSize for aSize in sizes if desiredSize in aSize.name][0]
