@@ -4,7 +4,7 @@ Created on Dec 15, 2014
 
 @author: lwoydziak
 '''
-import traceback
+import sys, traceback
 from jsonconfigfile import Env
 from providers import digitalOceanHosting
 

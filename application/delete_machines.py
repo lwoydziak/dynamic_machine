@@ -4,7 +4,7 @@ Created on Jun 14, 2014
 
 @author: lwoydziak
 '''
-import traceback
+import sys, traceback
 from jsonconfigfile import Env
 from providers import digitalOceanHosting
 from dynamic_machine.machine import Machine

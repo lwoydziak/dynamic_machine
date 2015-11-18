@@ -4,7 +4,7 @@ Created on Jun 14, 2014
 
 @author: lwoydziak
 '''
-import traceback
+import sys, traceback
 from jsonconfigfile import Env
 from json import load, dumps, loads
 from dynamic_machine.cli_process_json import CliProcessingJson
