@@ -4,5 +4,5 @@ from jsonconfigfile import Env
 
 def digitalOceanHosting():
     Driver = get_driver(Provider.DIGITAL_OCEAN)
-    digitalOcean = Driver(Env().get("DigitalOcean", "Client ID"), Env().get("DigitalOcean", "API Key"))
+    digitalOcean = Driver(Env().get("DigitalOcean", "Access Token"), api_version='v2')
     return digitalOcean
