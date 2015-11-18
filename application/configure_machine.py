@@ -4,6 +4,7 @@ Created on Jun 14, 2014
 
 @author: lwoydziak
 '''
+import traceback
 from jsonconfigfile import Env
 from json import load, dumps, loads
 from dynamic_machine.cli_process_json import CliProcessingJson
@@ -57,5 +58,6 @@ if __name__ == '__main__':
         ConfigureMachine(args.ip, args.jsonFile)
         exit(0)
     except Exception as e:
+        traceback.print_exc(file=sys.stdout)
         print (str(e))
         exit(1)

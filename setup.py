@@ -19,11 +19,11 @@ if os.path.exists('README.md'):
 scripts = glob.glob("application/*")
 
 setup(name='DynamicMachine',
-      version='0.4.3',
+      version='0.4.4',
       maintainer='Luke Woydziak',
       maintainer_email='lwoydziak@gmail.com',
       url = 'https://github.com/Pipe-s/dynamic_machine',
-      download_url = 'https://github.com/Pipe-s/dynamic_machine/tarball/0.4.3',
+      download_url = 'https://github.com/Pipe-s/dynamic_machine/tarball/0.4.4',
       platforms = ["any"],
       description = 'Python package for running the Dynamic Machine application.',
       long_description = read('README.txt'),

@@ -4,6 +4,7 @@ Created on Dec 15, 2014
 
 @author: lwoydziak
 '''
+import traceback
 from jsonconfigfile import Env
 from providers import digitalOceanHosting
 
@@ -36,5 +37,6 @@ if __name__ == '__main__':
         ListKeys()
         exit(0)
     except Exception as e:
+        traceback.print_exc(file=sys.stdout)
         print (str(e))
         exit(1)

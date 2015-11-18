@@ -4,6 +4,7 @@ Created on Jun 14, 2014
 
 @author: lwoydziak
 '''
+import traceback
 from jsonconfigfile import Env
 from providers import digitalOceanHosting
 from dynamic_machine.machine import Machine
@@ -44,5 +45,6 @@ if __name__ == '__main__':
         CreateMachine()
         exit(0)
     except Exception as e:
+        traceback.print_exc(file=sys.stdout)
         print (str(e))
         exit(1)
