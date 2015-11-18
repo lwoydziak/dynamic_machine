@@ -19,7 +19,7 @@ if os.path.exists('README.md'):
 scripts = glob.glob("application/*")
 
 setup(name='DynamicMachine',
-      version='0.4.0,
+      version='0.4.0',
       maintainer='Luke Woydziak',
       maintainer_email='lwoydziak@gmail.com',
       url = 'https://github.com/Pipe-s/dynamic_machine',
