@@ -32,7 +32,7 @@ class Machine(object):
                 self.__sshKey = str([aKey for aKey in availableKeys if keyName in aKey.name][0].fingerprint)
                 return self
             except IndexError:
-                onProvider.import_key_pair_from_string((keyName, sshKey)
+                onProvider.import_key_pair_from_string(keyName, sshKey)
                 availableKeys = onProvider.list_key_pairs()
 
     def size(self, desiredSize):
