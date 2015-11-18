@@ -27,8 +27,7 @@ def buildNode(hostname):
 def CreateMachine():
     initialJson = '{ \
         "DigitalOcean" : { \
-            "Client ID"     : "None", \
-            "API Key"       : "None", \
+            "Access Token"  : "None", \
             "location"      : "None", \
             "image"         : "None", \
             "size"          : "None" \

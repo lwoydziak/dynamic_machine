@@ -8,12 +8,12 @@ from jsonconfigfile import Env
 from providers import digitalOceanHosting
 
 '''usage: 
-list_targets.py                                                                                                 # clean up
+list_keys.py                                                                                                 # clean up
 '''
 
 
 
-def ListMachines():
+def ListKeys():
     initialJson = '{ \
         "DigitalOcean" : { \
             "Access Token"  : "None", \
@@ -25,15 +25,15 @@ def ListMachines():
     }'
     Env(initialJson, ".dynamicMachine", "DYNAMIC_MACHINE_CONFIG")
     onDigitalOcean = digitalOceanHosting()
-    print("Available Targets:")
-    for target in onDigitalOcean.list_images():
+    print("Available Keys:")
+    for target in onDigitalOcean.list_key_pairs():
         print (str(target))
 
 
 
 if __name__ == '__main__':
     try:
-        ListMachines()
+        ListKeys()
         exit(0)
     except Exception as e:
         print (str(e))
