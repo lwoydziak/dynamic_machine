@@ -47,7 +47,8 @@ def destroyNodes(aFilter):
         try:
             machine.destroy()
             machines.append(machine)
-        except MachineException:
+        except MachineException as exc:
+            print("Unable to delete: " + str(item.name) + " because exception: " + str(exc))
             continue
     
     #join

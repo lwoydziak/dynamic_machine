@@ -111,8 +111,8 @@ class Machine(object):
         try:
             if not self.__onProvider.destroy_node(nodeToDestroy):
                 raise MachineException("Unable to destroy node "+self.__hostname+" please manually destroy or try again later.")
-        except:
-            raise MachineException("Unable to destroy node " + self.__hostname + " please manually destroy or try again later.")
+        except Exception as exc:
+            raise MachineException("Unable to destroy node " + self.__hostname + " please manually destroy or try again later. \n(" + str(exc) + ")" )
     
     def __returnNodeIfExists(self, hostname):
         nodeOfInterest = None
