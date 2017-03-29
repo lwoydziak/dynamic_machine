@@ -7,11 +7,14 @@ from time import sleep
 import os
 from dynamic_machine.inventory import Inventory
 
+class MachineException(Exception):
+    pass
+
 class Machine(object):
     NODE_UP = 0
     def __init__(self, provider, existing=False):
         if provider == None:
-            raise Exception("Machine cannot be created without a provider")
+            raise MachineException("Machine cannot be created without a provider")
         self.__onProvider = provider
         self.__hostname = None
         self.__sshKey = None
@@ -63,15 +66,15 @@ class Machine(object):
 
     def __ensureParameters(self):
         if self.__hostname == None:
-            raise Exception("Machine Hostname not set, use: machine.name('hostname')")
+            raise MachineException("Machine Hostname not set, use: machine.name('hostname')")
         if self.__sshKey == None:
-            raise Exception("Machine SSH Key not set, use: machine.sshKey(path)")
+            raise MachineException("Machine SSH Key not set, use: machine.sshKey(path)")
         if self.__size == None:
-            raise Exception("Machine size not set, use: machine.size('size')")
+            raise MachineException("Machine size not set, use: machine.size('size')")
         if self.__image == None:
-            raise Exception("Machine image not set, use: machine.image('image')") 
+            raise MachineException("Machine image not set, use: machine.image('image')")
         if self.__location == None:
-            raise Exception("Machine location not set, machine.location('location')")
+            raise MachineException("Machine location not set, machine.location('location')")
     
     def create(self):
         if self.__created:
@@ -98,21 +101,24 @@ class Machine(object):
     
     def destroy(self):
         if self.__hostname == None:
-            raise Exception("Machine Hostname not set, use: machine.name('hostname')")
+            raise MachineException("Machine Hostname not set, use: machine.name('hostname')")
         
         nodeToDestroy = self.__returnNodeIfExists(self.__hostname)
         
         if not self.__created:
             return
-        
-        if not self.__onProvider.destroy_node(nodeToDestroy):
-            raise Exception("Unable to destroy node "+self.__hostname+" please manually destroy or try again later.")
+
+        try:
+            if not self.__onProvider.destroy_node(nodeToDestroy):
+                raise MachineException("Unable to destroy node "+self.__hostname+" please manually destroy or try again later.")
+        except:
+            raise MachineException("Unable to destroy node " + self.__hostname + " please manually destroy or try again later.")
     
     def __returnNodeIfExists(self, hostname):
         nodeOfInterest = None
         try:
             nodeOfInterest = Inventory(self.__onProvider).list(hostname)[0]
-        except Exception:
+        except MachineException:
             self.__created = False    
         if not nodeOfInterest:
             self.__created = False

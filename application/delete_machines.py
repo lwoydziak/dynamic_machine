@@ -7,7 +7,7 @@ Created on Jun 14, 2014
 import sys, traceback
 from jsonconfigfile import Env
 from providers import digitalOceanHosting
-from dynamic_machine.machine import Machine
+from dynamic_machine.machine import Machine, MachineException
 from dynamic_machine.inventory import Inventory
 from pertinosdk import PertinoSdk, where
 
@@ -44,8 +44,11 @@ def destroyNodes(aFilter):
         machine = pertinoSdk.listDevicesIn(organization, where("hostName").contains(pertinoHost))
         pertinoSdk.deleteFrom(organization, machine)
         machine = Machine(onDigitalOcean, existing=True).name(item.name)
-        machine.destroy()
-        machines.append(machine)
+        try:
+            machine.destroy()
+            machines.append(machine)
+        except MachineException:
+            continue
     
     #join
     for machine in machines:
