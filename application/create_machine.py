@@ -25,7 +25,7 @@ def buildNode(hostname):
                                      .create()
     machine.waitUntilReady()
 
-def CreateMachine():
+def CreateMachine(jsonFile):
     initialJson = '{ \
         "DigitalOcean" : { \
             "Access Token"  : "None", \

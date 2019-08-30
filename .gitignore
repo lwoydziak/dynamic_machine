@@ -5,5 +5,8 @@
 .project
 .pydevproject
 .dynamicMachine
-.pertinoApiAcceptanceConfig
 .settings/
+DynamicMachine.egg-info/
+README.txt
+build/
+dist/
