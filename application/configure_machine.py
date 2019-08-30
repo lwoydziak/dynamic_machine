@@ -45,14 +45,14 @@ def ConfigureMachine(ip, jsonFileName):
         },\
         "BaseHostName": "None"\
     }'
-    Env(initialJson, ".dynamicMachine", "DYNAMIC_MACHINE_CONFIG")
+    Env(initialJson, jsonFileName, "DYNAMIC_MACHINE_CONFIG")
     configureNode(ip, jsonFileName)
 
 if __name__ == '__main__':
     import argparse
     parser = argparse.ArgumentParser(description='Configure a machine.')
     parser.add_argument('--ip', help='The IP address of the machine.', required=True)
-    parser.add_argument('--jsonFile', help='The filename of the JSON file containing the list of commands.',required=False)
+    parser.add_argument('--jsonFile', default=".dynamicMachine", help='The filename of the JSON file containing the list of commands.',required=False)
     args = parser.parse_args()
     try:
         ConfigureMachine(args.ip, args.jsonFile)

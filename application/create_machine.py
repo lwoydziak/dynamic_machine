@@ -35,14 +35,19 @@ def CreateMachine():
         },\
         "BaseHostName": "None"\
     }'
-    Env(initialJson, ".dynamicMachine", "DYNAMIC_MACHINE_CONFIG")
+    Env(initialJson, jsonFile, "DYNAMIC_MACHINE_CONFIG")
     buildNode(Env().get("BaseHostName"))
 
 
 
 if __name__ == '__main__':
     try:
-        CreateMachine()
+        import argparse
+        parser = argparse.ArgumentParser(description='Configure a machine.')
+        parser.add_argument('--jsonFile', default=".dynamicMachine",
+                            help='The filename of the JSON file containing the list of commands.', required=False)
+        args = parser.parse_args()
+        CreateMachine(args.jsonFile)
         exit(0)
     except Exception as e:
         traceback.print_exc(file=sys.stdout)

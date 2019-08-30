@@ -42,8 +42,7 @@ setup(name='DynamicMachine',
       install_requires=[
                         "apache-libcloud",
                         "pexpect",
-                        "jsonconfigfile",
-			            "pertinosdk"
+                        "jsonconfigfile"
                        ],
       scripts=scripts
       )

@@ -69,7 +69,7 @@ def DestroyMachines(filter):
         },\
         "BaseHostName": "None"\
     }'
-    Env(initialJson, ".dynamicMachine", "DYNAMIC_MACHINE_CONFIG")
+    Env(initialJson, jsonFile, "DYNAMIC_MACHINE_CONFIG")
     destroyNodes(filter)
 
 
@@ -78,9 +78,12 @@ if __name__ == '__main__':
     import argparse
     parser = argparse.ArgumentParser(description='Delete Machines.')
     parser.add_argument('--filter', help='The filename of the JSON file containing the list of commands.',required=False)
+    parser.add_argument('--jsonFile', default=".dynamicMachine",
+                        help='The filename of the JSON file containing the list of commands.', required=False)
+
     args = parser.parse_args()
     try:
-        DestroyMachines(args.filter)
+        DestroyMachines(args.filter, args.jsonFile)
         exit(0)
     except Exception as e:
         traceback.print_exc(file=sys.stdout)
