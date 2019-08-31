@@ -11,7 +11,7 @@ class MachineException(Exception):
     pass
 
 class Machine(object):
-    NODE_UP = 0
+    NODE_UP = "run"
     def __init__(self, provider, existing=False):
         if provider == None:
             raise MachineException("Machine cannot be created without a provider")
@@ -95,7 +95,7 @@ class Machine(object):
             print(".",end="",flush=True)
             sleep(10)
             nodeOfInterest = Inventory(self.__onProvider).list(self.__hostname)[0]
-            if nodeOfInterest.state == self.NODE_UP:
+            if self.NODE_UP in str(nodeOfInterest.state).lower():
                 break
         print("Done ("+nodeOfInterest.public_ips[0]+")")
     
