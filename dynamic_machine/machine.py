@@ -85,7 +85,7 @@ class Machine(object):
                                       image=self.__image, 
                                       size=self.__size, 
                                       location=self.__location,
-                                      ex_ssh_key_ids=[self.__sshKey])
+                                      ex_create_attr={'ssh_keys':[self.__sshKey]})
         self.__created = True
         return self
 
