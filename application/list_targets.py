@@ -28,7 +28,7 @@ def ListMachines():
     onDigitalOcean = digitalOceanHosting()
     print("Available Targets:")
     for target in onDigitalOcean.list_images():
-        print (str(target))
+        print (target.name.encode('utf-8'))
 
 
 
